@@ -1,1 +1,1 @@
-# Find Replace Bookmarklet for WorkFlowy
+[A bookmarklet](javascript:(function(){alert("Hello World")})();)
