@@ -1,3 +1,7 @@
-theme: jekyll-theme-slate
+<<<<<<< HEAD
+theme: jekyll-theme-cayman
 title: Find/Replace Bookmarlet for WorkFlowy
 description: This is the description
+=======
+theme: jekyll-theme-cayman
+>>>>>>> 876f5b4364d2e86fe2820bb298f7aaad6c4d0912
