@@ -1,6 +1,10 @@
 # Find and Replace Bookmarklet for WorkFlowy
 
-![findreplace](https://i.imgur.com/OIWK68h.png)
+- Find and replace words and phrases.
+- Mass Rename tags. 
+- Delete all instances of a tag or string.
+
+![findreplace](https://i.imgur.com/OIWK68h.png)g
 
 ## Installation: Drag this link to your bookmarks bar:
 
