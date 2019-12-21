@@ -27,3 +27,14 @@
 - v1.5 (2018-12-28): Minor bug fixes
 - v1.4 (2018-12-27): Major bug fix. Now works with WorkFlowy's new Large Project Optimization code.
 - v1.3 (2018-11-06): Fix broken dialog buttons.
+
+<!-- 
+LINKS REFERENCING THIS
+
+@SOFTWARE https://rawbytz.wordpress.com/software/ 
+
+@WFBLOG https://blog.workflowy.com/2018/09/13/find-and-replace/
+
+@BLOGGER https://rawbytz.blogspot.com/p/findreplace-bookmarklet-for-workflowy.html
+
+ -->
