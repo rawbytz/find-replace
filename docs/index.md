@@ -12,7 +12,7 @@
 
 
 ## Links:
-- [View this shared WorkFlowy outline for more instructions.](https://workflowy.com/s/findreplace-bookmark/ynKNSb5dA77p2siT)
+- [View this shared WorkFlowy outline for detailed instructions.](https://workflowy.com/s/findreplace-bookmark/ynKNSb5dA77p2siT)
 - [Source code](https://github.com/rawbytz/find-replace/blob/master/findReplace.js)
 - [rawbytz Blog](https://rawbytz.wordpress.com)
 
