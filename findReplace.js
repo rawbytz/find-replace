@@ -1,4 +1,4 @@
-(function FR_2_0() {
+(function FR_2_1() {
   function toastMsg(str, sec, err) {
     WF.showMessage("<b>" + str + "</b>", err);
     setTimeout(function () { WF.hideMessage() }, (sec || 2) * 1000);
