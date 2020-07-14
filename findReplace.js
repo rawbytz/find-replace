@@ -115,6 +115,6 @@
   if (allCount > 0) {
     showFindReplaceDialog(body, title, allCount, caseCount, find);
   } else {
-    WF.showAlertDialog(body + "<br><br><i>No matches found.</i>", title);
+    WF.showAlertDialog(`${body}<br><br><i>No matches found.</i>`, title);
   }
 })();
