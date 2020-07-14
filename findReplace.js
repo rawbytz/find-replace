@@ -1,7 +1,7 @@
 (function FR_2_1() {
   function toastMsg(str, sec, err) {
-    WF.showMessage("<b>" + str + "</b>", err);
-    setTimeout(function () { WF.hideMessage() }, (sec || 2) * 1000);
+    WF.showMessage(str, err);
+    setTimeout(WF.hideMessage, (sec || 2) * 1000);
   }
   function applyToEachItem(functionToApply, parent) {
     functionToApply(parent);
