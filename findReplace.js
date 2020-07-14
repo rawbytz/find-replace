@@ -51,13 +51,17 @@
     r === "" ? WF.clearSearch() : WF.search(tQuery.replace(find, r));
   }
   const htmlEscText = str => str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-
+  function getColors() {
+    const p = document.querySelector(".page.active");
+    return p ? `color:${getComputedStyle(p).color};background:${getComputedStyle(p).backgroundColor};` : "";
+  }
   function showFindReplaceDialog(BODY, TITLE, aCount, cCount, searchValue) {
     const addButton = (num, name) => `<button type="button" class="btnX" id="btn${num.toString()}">${name}</button>`;
-    const style = '#inputBx{width:95%;height:20px;display:block;margin-top:5px;border:1px solid #ccc;border-radius:4px;padding:4px}.btnX{font-size:18px;background-color:#49baf2;border:2px solid;border-radius:20px;color:#fff;padding:5px 15px;margin-top:16px;margin-right:16px}.btnX:focus{border-color:#c4c4c4}';
+    const boxStyle = `#inputBx{${getColors()}width:95%;height:20px;display:block;margin-top:5px;border:1px solid #ccc;border-radius:4px;padding:4px};`;
+    const btnStyle = '.btnX{font-size:18px;background-color:steelblue;border:2px solid;border-radius:20px;color:#fff;padding:5px 15px;margin-top:16px;margin-right:16px}.btnX:focus{border-color:#c4c4c4};';
     const box = `<div><b>Replace:</b><input value="${htmlEscText(searchValue)}" id="inputBx" type="text" spellcheck="false"></div>`;
     const buttons = addButton(1, `Replace: All (${aCount})`) + addButton(2, `Replace: Match Case (${cCount})`);
-    WF.showAlertDialog(`<style>${htmlEscText(style)}</style><div>${BODY}</div>${box}<div>${buttons}</div>`, TITLE);
+    WF.showAlertDialog(`<style>${htmlEscText(boxStyle + btnStyle)}</style><div>${BODY}</div>${box}<div>${buttons}</div>`, TITLE);
     setTimeout(function () {
       let userInput;
       const inputBx = document.getElementById("inputBx");
