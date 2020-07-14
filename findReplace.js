@@ -23,9 +23,7 @@
       const isVisible = WF.completedVisible() || !item.isWithinCompleted();
       return item.data.search_result && item.data.search_result.matches && isVisible && !item.isReadOnly()
   }
-  function escapeForRegExp(str) {
-    return str.replace(/[-\[\]{}()*+?.,\\^$|#]/g, "\\$&")
-  }
+  const escapeForRegExp = str => str.replace(/[-\[\]{}()*+?.,\\^$|#]/g, "\\$&");
   function countMatches(items, rgx) {
     let matchCount = 0;
     items.forEach(item => {
