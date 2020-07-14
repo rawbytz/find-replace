@@ -49,11 +49,13 @@
     });
     r === "" ? WF.clearSearch() : WF.search(tQuery.replace(find, r));
   }
-  function showFindReplaceDialog(b, t, b1, b2, di) {
+  const htmlEscText = str => str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  function showFindReplaceDialog(b, t, aCount, cCount, inp) {
+    const addButton = (num, name) => `<button type="button" class="btnX" id="btn${num.toString()}">${name}</button>`;
     const style = '#inputBx{width:95%;height:20px;display:block;margin-top:5px;border:1px solid #ccc;border-radius:4px;padding:4px}.btnX{font-size:18px;background-color:#49baf2;border:2px solid;border-radius:20px;color:#fff;padding:5px 15px;margin-top:16px;margin-right:16px}.btnX:focus{border-color:#c4c4c4}';
-    const box = `<p><b>Replace:</b><input value="${htmlEscapeText(di)}" id="inputBx" type="text" spellcheck="false"></p>`;
-    const buttons = `<div><button type="button" class="btnX" id="btn1">${htmlEscapeText(b1)}</button><button type="button" class="btnX" id="btn2">${htmlEscapeText(b2)}</button></div>`;
-    WF.showAlertDialog(`<style>${htmlEscapeText(style)}</style><div>${b}</div>${box + buttons}`, t);
+    const box = `<div><b>Replace:</b><input value="${htmlEscText(inp)}" id="inputBx" type="text" spellcheck="false"></div>`;
+    const buttons = addButton(1, `Replace: All (${aCount})`) + addButton(2, `Replace: Match Case (${cCount})`);
+    WF.showAlertDialog(`<style>${htmlEscText(style)}</style><div>${b}</div>${box}<div>${buttons}</div>`, t);
     setTimeout(function () {
       let userInput;
       const inputBx = document.getElementById("inputBx");
@@ -98,7 +100,7 @@
   const modeTxt = isQuoted ? "Exact Match, " : "Single Word/Tag, ";
   const compTxt = `Completed: ${WF.completedVisible() ? "Included" : "Excluded"}`;
   const findTxt = isQuoted ? isQuoted[0] : tQuery;
-  const body = `<p><b>Mode:</b><br>${modeTxt + compTxt}</p><p><b>Find:</b><br>${htmlEscapeText(findTxt)}</p>`;
+  const body = `<p><b>Mode:</b><br>${modeTxt + compTxt}</p><p><b>Find:</b><br>${htmlEscText(findTxt)}</p>`;
   const findRgx = escapeForRegExp(htmlEscapeTextForContent(find));
   const rgx_gi = new RegExp(findRgx, "gi");
   const rgx_g = new RegExp(findRgx, "g");
