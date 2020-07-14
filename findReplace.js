@@ -39,12 +39,13 @@
     });
     return matchCount;
   }
+  const htmlEscTextForContent = str => str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/\u00A0/g, " ");
   function replaceMatches(items, rgx, r) {
     WF.editGroup(function () {
       items.forEach(item => {
         let result = item.data.search_result;
-        if (result.nameMatches) WF.setItemName(item, item.getName().replace(rgx, htmlEscapeTextForContent(r)));
-        if (result.noteMatches) WF.setItemNote(item, item.getNote().replace(rgx, htmlEscapeTextForContent(r)));
+        if (result.nameMatches) WF.setItemName(item, item.getName().replace(rgx, htmlEscTextForContent(r)));
+        if (result.noteMatches) WF.setItemNote(item, item.getNote().replace(rgx, htmlEscTextForContent(r)));
       });
     });
     r === "" ? WF.clearSearch() : WF.search(tQuery.replace(find, r));
@@ -101,7 +102,7 @@
   const compTxt = `Completed: ${WF.completedVisible() ? "Included" : "Excluded"}`;
   const findTxt = isQuoted ? isQuoted[0] : tQuery;
   const body = `<p><b>Mode:</b><br>${modeTxt + compTxt}</p><p><b>Find:</b><br>${htmlEscText(findTxt)}</p>`;
-  const findRgx = escapeForRegExp(htmlEscapeTextForContent(find));
+  const findRgx = escapeForRegExp(htmlEscTextForContent(find));
   const rgx_gi = new RegExp(findRgx, "gi");
   const rgx_g = new RegExp(findRgx, "g");
   const allCount = countMatches(Matches, rgx_gi);
