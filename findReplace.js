@@ -1,7 +1,7 @@
 (function FR_2_1() {
   function toastMsg(str, sec, err) {
-    WF.showMessage(str, err);
-    setTimeout(WF.hideMessage, (sec || 2) * 1000);
+    WF.showMessage(str, err);
+    setTimeout(WF.hideMessage, (sec || 2) * 1000);
   }
   function applyToEachItem(functionToApply, parent) {
     functionToApply(parent);
@@ -20,8 +20,8 @@
     return matches;
   }
   function editableItemWithVisibleMatch(item) {
-      const isVisible = WF.completedVisible() || !item.isWithinCompleted();
-      return item.data.search_result && item.data.search_result.matches && isVisible && !item.isReadOnly()
+    const isVisible = WF.completedVisible() || !item.isWithinCompleted();
+    return item.data.search_result && item.data.search_result.matches && isVisible && !item.isReadOnly()
   }
   const escapeForRegExp = str => str.replace(/[-\[\]{}()*+?.,\\^$|#]/g, "\\$&");
   function countMatches(items, rgx) {
@@ -57,11 +57,11 @@
   }
   function showFindReplaceDialog(BODY, TITLE, aCount, cCount, searchValue) {
     const addButton = (num, name) => `<button type="button" class="btnX" id="btn${num.toString()}">${name}</button>`;
-    const boxStyle = `#inputBx{${getColors()}width:95%;height:20px;display:block;margin-top:5px;border:1px solid #ccc;border-radius:4px;padding:4px};`;
-    const btnStyle = '.btnX{font-size:18px;background-color:steelblue;border:2px solid;border-radius:20px;color:#fff;padding:5px 15px;margin-top:16px;margin-right:16px}.btnX:focus{border-color:#c4c4c4};';
+    const boxStyle = `#inputBx{${getColors()}width:95%;height:20px;display:block;margin-top:5px;border:1px solid #ccc;border-radius:4px;padding:4px}`;
+    const btnStyle = `.btnX{font-size:18px;background-color:steelblue;border:2px solid;border-radius:20px;color:#fff;padding:5px 15px;margin-top:16px;margin-right:16px}.btnX:focus{border-color:#c4c4c4}`;
     const box = `<div><b>Replace:</b><input value="${htmlEscText(searchValue)}" id="inputBx" type="text" spellcheck="false"></div>`;
     const buttons = addButton(1, `Replace: All (${aCount})`) + addButton(2, `Replace: Match Case (${cCount})`);
-    WF.showAlertDialog(`<style>${htmlEscText(boxStyle + btnStyle)}</style><div>${BODY}</div>${box}<div>${buttons}</div>`, TITLE);
+    WF.showAlertDialog(`<style>${boxStyle + btnStyle}</style><div>${BODY}</div>${box}<div>${buttons}</div>`, TITLE);
     setTimeout(function () {
       let userInput;
       const inputBx = document.getElementById("inputBx");
