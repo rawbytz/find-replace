@@ -1,4 +1,4 @@
-(function FR_2_1() {
+(function FR_2_2() {
   function toastMsg(str, sec, err) {
     WF.showMessage(str, err);
     setTimeout(WF.hideMessage, (sec || 2) * 1000);
@@ -62,32 +62,35 @@
     const box = `<div><b>Replace:</b><input value="${htmlEscText(searchValue)}" id="inputBx" type="text" spellcheck="false"></div>`;
     const buttons = addButton(1, `Replace: All (${aCount})`) + addButton(2, `Replace: Match Case (${cCount})`);
     WF.showAlertDialog(`<style>${boxStyle + btnStyle}</style><div>${BODY}</div>${box}<div>${buttons}</div>`, TITLE);
-    setTimeout(function () {
-      let userInput;
-      const inputBx = document.getElementById("inputBx");
-      const btn1 = document.getElementById("btn1");
-      const btn2 = document.getElementById("btn2");
-      inputBx.select();
-      inputBx.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-          btn1.click();
-        }
-      });
-      btn1.onclick = function () {
-        userInput = inputBx.value;
-        WF.hideDialog();
-        setTimeout(function () {
-          replaceMatches(Matches, rgx_gi, userInput)
-        }, 50);
-      };
-      btn2.onclick = function () {
-        userInput = inputBx.value;
-        WF.hideDialog();
-        setTimeout(function () {
-          replaceMatches(Matches, rgx_g, userInput)
-        }, 50);
-      };
-    }, 100);
+    const intervalId = setInterval(function () {
+      let inputBx = document.getElementById("inputBx");
+      if (inputBx) {
+        clearInterval(intervalId);
+        let userInput;
+        const btn1 = document.getElementById("btn1");
+        const btn2 = document.getElementById("btn2");
+        inputBx.select();
+        inputBx.addEventListener("keyup", function (event) {
+          if (event.key === "Enter") {
+            btn1.click();
+          }
+        });
+        btn1.onclick = function () {
+          userInput = inputBx.value;
+          WF.hideDialog();
+          setTimeout(function () {
+            replaceMatches(Matches, rgx_gi, userInput)
+          }, 50);
+        };
+        btn2.onclick = function () {
+          userInput = inputBx.value;
+          WF.hideDialog();
+          setTimeout(function () {
+            replaceMatches(Matches, rgx_g, userInput)
+          }, 50);
+        };
+      }
+    }, 50);
   }
   if (!WF.currentSearchQuery()) {
     return void toastMsg('Use the searchbox to find. <a href="https://workflowy.com/s/findreplace-bookmark/ynKNSb5dA77p2siT" target="_blank">Click here for more information.</a>', 3, true);
