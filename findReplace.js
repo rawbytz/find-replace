@@ -1,4 +1,4 @@
-(function FR_2_2() {
+(function FR_2_3() {
   function toastMsg(str, sec, err) {
     WF.showMessage(str, err);
     setTimeout(WF.hideMessage, (sec || 2) * 1000);
@@ -39,7 +39,7 @@
     });
     return matchCount;
   }
-  const htmlEscTextForContent = str => str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/\u00A0/g, " ");
+  const htmlEscTextForContent = str => str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/\u00A0/g, "&nbsp;");
   function replaceMatches(items, rgx, r) {
     WF.editGroup(function () {
       items.forEach(item => {
