@@ -1,3 +1,7 @@
-## Find and Replace Utility for WorkFlowy
-- [View this shared WorkFlowy outline for detailed instructions.](https://workflowy.com/s/findreplace-bookmark/ynKNSb5dA77p2siT)
-- [Go to the bookmarklet page](https://rawbytz.github.io/find-replace/) 
+## Regex Search for NYTimes Spelling Bee Dictionary in Workflowy
+- [Based on this bookmarklet](https://rawbytz.github.io/find-replace/) 
+
+## Basic Principle
+- regex search: XX [a-z]\* X [a-z]\*
+- first XX are known 2 letters
+- middle X is center required letter

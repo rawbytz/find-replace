@@ -24,37 +24,39 @@
     return item.data.search_result && item.data.search_result.matches && isVisible && !item.isReadOnly()
   }
   const escapeForRegExp = str => str.replace(/[-\[\]{}()*+?.,\\^$|#]/g, "\\$&");
-  function countMatches(items, rgx) {
-    let matchCount = 0;
-    items.forEach(item => {
-      let result = item.data.search_result;
-      if (result.nameMatches) {
-        let nameMatch = item.getName().match(rgx);
-        if (nameMatch) matchCount += nameMatch.length;
-      }
-      if (result.noteMatches) {
-        let noteMatch = item.getNote().match(rgx);
-        if (noteMatch) matchCount += noteMatch.length;
-      }
-    });
-    return matchCount;
-  }
+  // function countMatches(items, rgx) {
+  //   let matchCount = 0;
+  //   items.forEach(item => {
+  //     let result = item.data.search_result;
+  //     if (result.nameMatches) {
+  //       let nameMatch = item.getName().match(rgx);
+  //       if (nameMatch) matchCount += nameMatch.length;
+  //     }
+  //     if (result.noteMatches) {
+  //       let noteMatch = item.getNote().match(rgx);
+  //       if (noteMatch) matchCount += noteMatch.length;
+  //     }
+  //   });
+  //   return matchCount;
+  // }
   const htmlEscTextForContent = str => str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/\u00A0/g, "&nbsp;");
-  function replaceMatches(items, rgx, r) {
-    WF.editGroup(function () {
-      items.forEach(item => {
-        let result = item.data.search_result;
-        if (result.nameMatches) WF.setItemName(item, item.getName().replace(rgx, htmlEscTextForContent(r)));
-        if (result.noteMatches) WF.setItemNote(item, item.getNote().replace(rgx, htmlEscTextForContent(r)));
-      });
-    });
-    r === "" ? WF.clearSearch() : WF.search(tQuery.replace(find, r));
-  }
+  // function replaceMatches(items, rgx, r) {
+  //   WF.editGroup(function () {
+  //     items.forEach(item => {
+  //       let result = item.data.search_result;
+  //       if (result.nameMatches) WF.setItemName(item, item.getName().replace(rgx, htmlEscTextForContent(r)));
+  //       if (result.noteMatches) WF.setItemNote(item, item.getNote().replace(rgx, htmlEscTextForContent(r)));
+  //     });
+  //   });
+  //   r === "" ? WF.clearSearch() : WF.search(tQuery.replace(find, r));
+  // }
   const htmlEscText = str => str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
   function getColors() {
     const p = document.querySelector(".page.active");
     return p ? `color:${getComputedStyle(p).color};background:${getComputedStyle(p).backgroundColor};` : "";
   }
+
+  /* Popup Box for entering the data */
   function showFindReplaceDialog(BODY, TITLE, aCount, cCount, searchValue) {
     const addButton = (num, name) => `<button type="button" class="btnX" id="btn${num.toString()}">${name}</button>`;
     const boxStyle = `#inputBx{${getColors()}width:95%;height:20px;display:block;margin-top:5px;border:1px solid #ccc;border-radius:4px;padding:4px}`;
@@ -105,7 +107,8 @@
     }
     return;
   }
-  const title = "Find/Replace";
+
+  const title = "Bee Dictionary Search";
   const modeTxt = isQuoted ? "Exact Match, " : "Single Word/Tag, ";
   const compTxt = `Completed: ${WF.completedVisible() ? "Included" : "Excluded"}`;
   const findTxt = isQuoted ? isQuoted[0] : tQuery;
